@@ -1,0 +1,51 @@
+*{
+  font-family: arial, helvetica, tahoma, sans-serif;
+}
+
+.search {
+	background: url( gxt/icons/search.png ) no-repeat;
+}
+
+.upload {
+  background: url( gxt/icons/upload.png ) no-repeat;
+}
+
+.refresh {
+  background: url( gxt/icons/refresh.png ) no-repeat;
+}
+
+.ok {
+  background: url( gxt/icons/ok.png ) no-repeat;
+}
+
+.cancel {
+  background: url( gxt/icons/cancel.png ) no-repeat;
+}
+
+#div-footer {
+  color: #FFFFFF;
+  float: center;
+  font-family: tahoma, arial, sans-serif;
+  font-size: 16px;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: normal;
+  padding: 0px 0px 8px 6px;
+  text-align: center;
+}
+
+#demo-title {
+  color: #FFFFFF;
+  font-family: tahoma, arial, sans-serif;
+  font-size: 16px;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: normal;
+  padding: 6px 0 8px 6px;
+}

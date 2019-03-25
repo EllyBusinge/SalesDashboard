@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+	<changeSet author="elly" id="20141016-01">
+		<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="Sales"/>
+            </not>
+        </preConditions>
+		<createTable tableName="Sales">
+			<column autoIncrement="true" name="sale_id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="salePeriod" type="VARCHAR(50)" />
+			<column name="branch_id" type="BIGINT" />
+			<column name="dateChanged" type="TIMESTAMP" />
+			<column name="dateCreated" type="TIMESTAMP" />		
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="elly" id="20141016-02">
+		<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="Branches"/>
+            </not>
+        </preConditions>
+		<createTable tableName="Branches">
+			<column autoIncrement="true" name="branch_id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="branchCode" type="VARCHAR(20)" />
+			<column name="branchName" type="VARCHAR(20)" />
+			<column name="location" type="VARCHAR(50)" />
+			<column name="dateChanged" type="TIMESTAMP" />
+			<column name="dateCreated" type="TIMESTAMP" />	
+		</createTable>
+	</changeSet>
+
+	<changeSet author="elly" id="20141016-03">
+		<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="Products"/>
+            </not>
+        </preConditions>
+		<createTable tableName="Products">
+			<column autoIncrement="true" name="product_id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="productCode" type="VARCHAR(20)" />
+			<column name="productDescription" type="VARCHAR(100)" />
+			<column name="productType_id" type="BIGINT" />
+			<column name="buyingPrice" type="DOUBLE" />
+			<column name="sellingPrice" type="DOUBLE" />
+			<column name="profitMade" type="DOUBLE" />
+			<column name="unitsSold" type="BIGINT" />
+			<column name="sale_id" type="BIGINT" />
+			<column name="dateChanged" type="TIMESTAMP" />
+			<column name="dateCreated" type="TIMESTAMP" />		
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="elly" id="20141018-01">
+		<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ProductTypes"/>
+            </not>
+        </preConditions>
+		<createTable tableName="ProductTypes">
+			<column autoIncrement="true" name="productType_id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="productTypeName" type="VARCHAR(100)" />
+			<column name="dateChanged" type="TIMESTAMP" />
+			<column name="dateCreated" type="TIMESTAMP" />		
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

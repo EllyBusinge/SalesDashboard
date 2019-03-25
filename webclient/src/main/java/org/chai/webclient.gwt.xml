@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='webclient'>
+	<!-- Inherit the core Web Toolkit stuff.                        -->
+	<inherits name='com.google.gwt.user.User' />
+
+	<!-- Inherit the default GWT style sheet.  You can change       -->
+	<!-- the theme of your GWT application by uncommenting          -->
+	<!-- any one of the following lines.                            -->
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+	<inherits name='com.extjs.gxt.themes.Themes' />
+	<!--<inherits name="com.google.gwt.logging.Logging" />-->
+
+	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+	<!-- Other module inherits   
+	                                   -->
+	<inherits name='com.google.gwt.activity.Activity' />
+	<inherits name='com.google.gwt.place.Place' />
+	<inherits name='com.extjs.gxt.ui.GXT' />
+	<inherits name='com.sencha.gxt.ui.GXT' />
+	<inherits name='com.sencha.gxt.chart.Chart' />
+	<inherits name='net.sf.gilead.Gilead4Gwt' />
+	<inherits name="org.chai.shared.Shared"/>
+	<inherits name="com.google.gwt.inject.Inject" />
+	
+	<!-- Specify the app entry point class.                         -->
+	<entry-point class='org.chai.client.webclient' />
+
+	<!-- Internationalisation -->
+	<inherits name="com.google.gwt.i18n.I18N" />
+
+	<extend-property name="locale" values="en" />
+	<extend-property name="locale" values="pt" />
+	<extend-property name="locale" values="st" />
+	<extend-property name="locale" values="ny" />
+	<set-property name="locale" value="en,pt,st,ny" />
+	
+	<replace-with class="com.extjs.gxt.ui.client.widget.impl.PngImageImplIE6">
+        <when-type-is class="com.extjs.gxt.ui.client.widget.impl.PngImageImpl"/>
+        <when-property-is name="user.agent" value="ie6" />
+    </replace-with>
+    
+    <replace-with class="com.extjs.gxt.ui.client.core.impl.ComputedStyleImplIE">
+        <when-type-assignable class="com.extjs.gxt.ui.client.core.impl.ComputedStyleImpl"/>
+		<any>
+        	<when-property-is name="user.agent" value="ie6" />
+			<when-property-is name="user.agent" value="ie8" />
+		</any>
+    </replace-with>
+    
+    <!-- skip automatically fallback for ie9 -->
+    <replace-with class="com.extjs.gxt.ui.client.core.impl.ComputedStyleImpl">
+        <when-type-assignable class="com.extjs.gxt.ui.client.core.impl.ComputedStyleImpl"/>
+		<when-property-is name="user.agent" value="ie9" />
+    </replace-with>
+	
+	<!-- RPC service servlet declarations                             -->
+	<servlet path="/salesService" class="org.chai.server.serviceImpl.SalesServiceImpl" />
+	
+</module>

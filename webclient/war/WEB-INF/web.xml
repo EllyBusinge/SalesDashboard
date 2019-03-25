@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>salesUploadServlet</servlet-name>
+		<servlet-class>org.chai.server.servlet.SalesUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>salesUploadServlet</servlet-name>
+		<url-pattern>/webclient/salesupload</url-pattern>
+		<url-pattern>/salesloading</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>codeBeamerLiveFileEditorServlet</servlet-name>
+		<servlet-class>org.chai.server.servlet.CodeBeamerLiveFileEditorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>codeBeamerLiveFileEditorServlet</servlet-name>
+		<url-pattern>/webclient/liveeditor</url-pattern>
+		<url-pattern>/liveeditorloading</url-pattern>
+	</servlet-mapping>
+	
+	<!--rpc services-->
+	<servlet>
+		<servlet-name>salesService</servlet-name>
+		<servlet-class>org.chai.server.serviceImpl.SalesServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>salesService</servlet-name>
+		<url-pattern>/webclient/salesService</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>webclient.jsp</servlet-name>
+		<jsp-file>/webclient.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>webclient.jsp</servlet-name>
+		<url-pattern>/webclient.html</url-pattern>
+	</servlet-mapping>
+
+	<!-- UTF-8 characterset filtering -->
+	<filter>
+		<filter-name>charsetFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>charsetFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/webclient-web-applicationContext.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>webclient.html</welcome-file>
+	</welcome-file-list>
+</web-app>

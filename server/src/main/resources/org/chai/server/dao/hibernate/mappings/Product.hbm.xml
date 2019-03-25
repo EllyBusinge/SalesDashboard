@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.chai.shared.model.Product" table="Products" catalog="salemanagementdb" lazy="false">
+		<id name="id" type="java.lang.Integer" column="product_id" unsaved-value="0" >
+				<generator class="native">
+					 <param name="sequence">product_id_seq</param>
+				</generator>
+		</id>
+	
+		<discriminator column="product_id" insert="false" />
+		
+		<property name="productCode" type="string">
+			<column name="productCode" length="20" />
+		</property>
+		
+		<property name="productDescription" type="string">
+			<column name="productDescription" length="100" />
+		</property>
+		
+		<property name="buyingPrice" type="java.lang.Double">
+			<column name="buyingPrice" />
+		</property>
+		
+		<property name="sellingPrice" type="java.lang.Double">
+			<column name="sellingPrice" />
+		</property>
+		
+		<property name="profitMade" type="java.lang.Double">
+			<column name="profitMade" />
+		</property>
+		
+		<property name="unitsSold" type="java.lang.Integer">
+			<column name="unitsSold" />
+		</property>
+					
+		<property name="dateCreated" type="timestamp">
+			<column name="dateCreated" length="50" />
+		</property>
+		
+		<property name="dateChanged" type="timestamp">
+			<column name="dateChanged" length="50" />
+		</property>
+		
+		<many-to-one name="sale" class="org.chai.shared.model.Sale" fetch="select">
+			<column name="sale_id" />
+		</many-to-one>
+		
+		<many-to-one name="productType" class="org.chai.shared.model.ProductType" fetch="select">
+			<column name="productType_id" />
+		</many-to-one>	
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.chai.shared.model.Sale" table="Sales" catalog="salemanagementdb" lazy="false">
+		<id name="id" type="java.lang.Integer" column="sale_id" unsaved-value="0" >
+				<generator class="native">
+					 <param name="sequence">sale_id_seq</param>
+				</generator>
+		</id>
+	
+		<discriminator column="sale_id" insert="false" />
+		
+		<property name="salePeriod" type="string">
+			<column name="salePeriod" length="50" />
+		</property>
+						
+		<property name="dateCreated" type="timestamp">
+			<column name="dateCreated" length="50" />
+		</property>
+		
+		<property name="dateChanged" type="timestamp">
+			<column name="dateChanged" length="50" />
+		</property>
+		
+		<many-to-one name="branch" class="org.chai.shared.model.Branch" fetch="select">
+			<column name="branch_id" />
+		</many-to-one>
+		
+		<bag name="products" lazy="true" inverse="true" table="Products" cascade="all" fetch="select">
+			<key column="sale_id" not-null="true"/>
+			<one-to-many class="org.chai.shared.model.Product" />
+		</bag>
+	</class>
+</hibernate-mapping>
